@@ -248,3 +248,46 @@ table#t01 td:hover {
   background-color: #002b55 !important;
   color: white !important;
 }
+
+/* Accessible Breadcrumb Styling (WCAG SC 1.3.1 / SC 2.4.8) */
+.breadcrumb-nav {
+  background-color: #f4f6f9 !important;
+  padding: 10px 0 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+.breadcrumb-nav .breadcrumb {
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  list-style: none !important;
+  font-size: 14px !important;
+}
+
+.breadcrumb-nav .breadcrumb-item {
+  color: #555555 !important;
+  font-size: 14px !important;
+}
+
+.breadcrumb-nav .breadcrumb-item + .breadcrumb-item::before {
+  content: "/" !important;
+  padding: 0 8px !important;
+  color: #777777 !important;
+}
+
+.breadcrumb-nav .breadcrumb-item a {
+  color: #005FCC !important;
+  text-decoration: underline !important;
+  font-weight: 500 !important;
+}
+
+.breadcrumb-nav .breadcrumb-item a:hover {
+  color: #002b55 !important;
+}
+
+.breadcrumb-nav .breadcrumb-item.active {
+  color: #222222 !important;
+  font-weight: bold !important;
+}
