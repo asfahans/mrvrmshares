@@ -1,0 +1,10 @@
+# Credentials & Local Environment Configuration
+*.env
+config.local.php
+email_config.local.php
+
+# OS & IDE System Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
