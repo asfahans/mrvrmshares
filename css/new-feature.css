@@ -278,13 +278,13 @@ table#t01 td:hover {
 }
 
 .breadcrumb-nav .breadcrumb-item a {
-  color: #005FCC !important;
+  color: #6b21a8 !important;
   text-decoration: underline !important;
   font-weight: 500 !important;
 }
 
 .breadcrumb-nav .breadcrumb-item a:hover {
-  color: #002b55 !important;
+  color: #4c1d95 !important;
 }
 
 .breadcrumb-nav .breadcrumb-item.active {
