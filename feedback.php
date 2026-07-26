@@ -263,10 +263,10 @@ RISK DISCLOSURES ON DERIVATIVES</p>
                             <div class="inner">
                                 <?php
                                 if (isset($_GET['status']) && $_GET['status'] == 'success') {
-                                    echo '<div class="alert alert-success" role="status" aria-live="polite">Thank you for your feedback. A ticket has been created, and you will receive an email with your ticket ID.</div>';
+                                    echo '<div id="form-status-alert" class="alert alert-success" role="status" aria-live="polite" tabindex="-1">Thank you for your feedback. A ticket has been created, and you will receive an email with your ticket ID.</div>';
                                 }
                                 if (isset($_GET['status']) && $_GET['status'] == 'error') {
-                                    echo '<div class="alert alert-danger" role="alert" aria-live="assertive">Something went wrong while submitting your feedback. Please try again or contact customer support.</div>';
+                                    echo '<div id="form-status-alert" class="alert alert-danger" role="alert" aria-live="assertive" tabindex="-1">Something went wrong while submitting your feedback. Please check your information and try again.</div>';
                                 }
                                 ?>
                                 <div class="sec-title">

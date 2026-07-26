@@ -115,6 +115,7 @@ $(document).ready(function () {
   initMobileMenuAccessibility();
   initDropdownAccessibility();
   initCarouselAccessibility();
+  initFormAccessibilityValidation();
 });
 
 /* ==========================================================================
@@ -252,4 +253,81 @@ function initCarouselAccessibility() {
       $slider.trigger('next.owl.carousel');
     }
   });
+}
+
+/* ==========================================================================
+   8. FORM ACCESSIBILITY VALIDATION & ERROR HANDLING (WCAG 3.3.1 / 3.3.3 / 4.1.3)
+   ========================================================================== */
+function initFormAccessibilityValidation() {
+  const $form = $('form[action="process_feedback.php"], form[aria-label*="feedback"]');
+  if (!$form.length) return;
+
+  // Auto-focus status alert if page redirected back with success/error
+  const $statusAlert = $('#form-status-alert');
+  if ($statusAlert.length) {
+    $statusAlert.attr('tabindex', '-1').focus();
+  }
+
+  $form.on('submit', function (e) {
+    let isValid = true;
+    let $firstInvalidField = null;
+
+    // Clear previous inline errors
+    $form.find('.form-error-msg').remove();
+    $form.find('input, textarea').removeAttr('aria-invalid').removeAttr('aria-describedby');
+
+    // 1. Name Field
+    const $name = $('#name');
+    if ($name.length && !$.trim($name.val())) {
+      isValid = false;
+      showFieldError($name, 'name-error', 'Please enter your full name.');
+      if (!$firstInvalidField) $firstInvalidField = $name;
+    }
+
+    // 2. Email Field
+    const $email = $('#email');
+    const emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if ($email.length) {
+      const emailVal = $.trim($email.val());
+      if (!emailVal) {
+        isValid = false;
+        showFieldError($email, 'email-error', 'Please enter your email address.');
+        if (!$firstInvalidField) $firstInvalidField = $email;
+      } else if (!emailRegEx.test(emailVal)) {
+        isValid = false;
+        showFieldError($email, 'email-error', 'Please enter a valid email address (e.g., name@example.com).');
+        if (!$firstInvalidField) $firstInvalidField = $email;
+      }
+    }
+
+    // 3. Message Field
+    const $message = $('#message');
+    if ($message.length && !$.trim($message.val())) {
+      isValid = false;
+      showFieldError($message, 'message-error', 'Please enter your message or grievance details.');
+      if (!$firstInvalidField) $firstInvalidField = $message;
+    }
+
+    if (!isValid) {
+      e.preventDefault();
+      announceToScreenReader('Form submission failed. Please fix the errors in the highlighted fields.');
+      if ($firstInvalidField) {
+        $firstInvalidField.focus();
+      }
+    }
+  });
+
+  // Clear errors on input
+  $form.on('input change', 'input, textarea', function () {
+    const $field = $(this);
+    if ($.trim($field.val())) {
+      $field.removeAttr('aria-invalid').removeAttr('aria-describedby');
+      $field.siblings('.form-error-msg').remove();
+    }
+  });
+}
+
+function showFieldError($field, errorId, errorMsgText) {
+  $field.attr('aria-invalid', 'true').attr('aria-describedby', errorId);
+  $field.after('<div id="' + errorId + '" class="form-error-msg" role="alert">' + errorMsgText + '</div>');
 }

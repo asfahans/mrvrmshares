@@ -291,3 +291,18 @@ table#t01 td:hover {
   color: #222222 !important;
   font-weight: bold !important;
 }
+
+/* WCAG 2.2 Form Validation & Error Indicator Styling (SC 3.3.1 / SC 3.3.3) */
+.form-error-msg {
+  color: #d9534f !important;
+  font-size: 13px !important;
+  font-weight: bold !important;
+  margin-top: 4px !important;
+  display: block !important;
+}
+
+input[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  border: 2px solid #d9534f !important;
+  background-color: #fff8f8 !important;
+}
