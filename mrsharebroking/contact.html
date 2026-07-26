@@ -37,33 +37,65 @@ textarea:focus, textarea:focus-visible,
   box-shadow: 0 0 0 4px rgba(0, 95, 204, 0.4) !important;
 }
 
-table {
-  width:100%;
-}
-table, th, td {
-  border: 1px solid #333333;
-  border-collapse: collapse;
-}
-th, td {
-  padding: 15px;
-  text-align: center;
-  color: #333333;
-}
-th {
-  background-color: #002b55 !important;
-  color: #ffffff !important;
-  font-weight: 700;
-}
-table#t01 tr:nth-child(odd) {
-  background-color: #eee;
-}
-table#t01 tr:nth-child(even) {
- background-color: #fff;
+/* Accessible Table Borders & Typography Styling */
+.table-responsive {
+  margin-bottom: 30px;
 }
 
-table#t01 td:hover {
-  background-color: #002b55;
-  color: white;
+table.table, table#t01, table#t01_broker {
+  width: 100% !important;
+  margin-bottom: 25px;
+  font-family: inherit;
+  font-size: 15px;
+  border-collapse: collapse !important;
+  border: 1px solid #333333 !important;
+}
+
+table.table th, table#t01 th, table#t01_broker th,
+table.table td, table#t01 td, table#t01_broker td {
+  border: 1px solid #333333 !important;
+}
+
+table.table th, table#t01 th, table#t01_broker th {
+  background-color: #002b55 !important;
+  color: #ffffff !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  padding: 14px 12px !important;
+  vertical-align: middle !important;
+}
+
+table.table td, table#t01 td, table#t01_broker td {
+  padding: 12px 15px !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  color: #222222 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+table.table tr:nth-child(odd), table#t01 tr:nth-child(odd), table#t01_broker tr:nth-child(odd) {
+  background-color: #f8f9fa !important;
+}
+
+table.table tr:nth-child(even), table#t01 tr:nth-child(even), table#t01_broker tr:nth-child(even) {
+  background-color: #ffffff !important;
+}
+
+table.table td:hover, table#t01 td:hover, table#t01_broker td:hover {
+  background-color: #002b55 !important;
+  color: #ffffff !important;
+}
+
+table.table td a, table#t01 td a, table#t01_broker td a {
+  color: #005FCC !important;
+  text-decoration: underline !important;
+  font-weight: 600;
+}
+
+table.table td:hover a, table#t01 td:hover a, table#t01_broker td:hover a {
+  color: #ffffff !important;
 }
 
 .sr-only {
