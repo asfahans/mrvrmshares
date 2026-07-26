@@ -1,0 +1,101 @@
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.toolbar {
+  background: #fff;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.toolbar a {
+  text-decoration: none;
+  color: #0000EE;
+  cursor: pointer;
+}
+
+.toolbar a:hover {
+  text-decoration: underline;
+}
+
+.divider {
+  width: 1px;
+  height: 18px;
+  background: #000;
+  margin: 0 8px;
+}
+
+.color-box {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #000;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Colors */
+.white { background: #fff; }
+.black { background: #000; }
+.yellow { background: yellow; }
+.blue { background: #cfd8e6; }
+.peach { background: #e8c2a5; }
+
+.header-top .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.top-left,
+.toolbar,
+.top-right {
+    display: flex;
+    align-items: center;
+}
+
+/* Prevent wrapping */
+.toolbar {
+    white-space: nowrap;
+}
+
+.top-right .info ul {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.top-right .info ul li {
+    margin-left: 15px;
+    white-space: nowrap;
+}
+
+.about-section * {
+    font-size: inherit !important;
+}
+
+.list-style-one li {
+    line-height: 1.6em; /* scales with font size */
+}
+
+/* Allow scaling for sub-text only */
+.no-theme .title-box .sub-text {
+    font-size: inherit !important;
+}
+
+/* Keep heading size proper AND scalable */
+.no-theme .title-box h4 {
+    font-size: inherit !important;;  
+}
+
+.widgets-section .column {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+

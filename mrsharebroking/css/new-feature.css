@@ -1,0 +1,308 @@
+/* Additional Accessibility & New Feature Styles for VRM Share Broking */
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+/* Fix Issue 1: Prevent MR SHARE BROKING PVT. LTD button text from wrapping */
+.top-left .top-text,
+.top-left .top-text a,
+.top-left .btn-primary {
+  white-space: nowrap !important;
+  display: inline-block !important;
+}
+
+/* WCAG 2.2 SC 2.4.7 / 2.4.13: Visible Focus Indicators */
+a:focus, a:focus-visible,
+button:focus, button:focus-visible,
+input:focus, input:focus-visible,
+select:focus, select:focus-visible,
+textarea:focus, textarea:focus-visible,
+[tabindex]:focus, [tabindex]:focus-visible {
+  outline: 3px solid #005FCC !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 4px rgba(0, 95, 204, 0.4) !important;
+}
+
+/* Rule #4 & #7: Multi-Level Skip Navigation Bar */
+.skip-nav-bar {
+  position: absolute;
+  top: -100px;
+  left: 10px;
+  z-index: 99999;
+  display: flex;
+  gap: 10px;
+  transition: top 0.2s ease-in-out;
+}
+
+.skip-link {
+  background: #ffff00;
+  color: #000;
+  padding: 8px 16px;
+  font-weight: bold;
+  border: 2px solid #000;
+  border-radius: 4px;
+  text-decoration: underline;
+}
+
+.skip-nav-bar:focus-within,
+.skip-link:focus-visible {
+  top: 10px;
+}
+
+/* Toolbar & Button Styles (Rule #2) */
+.toolbar {
+  background: #fff;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.toolbar-btn-link,
+.toolbar a,
+.toolbar button {
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  color: #0000EE;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 2px 4px;
+  line-height: inherit;
+}
+
+.toolbar-btn-link:hover,
+.toolbar a:hover,
+.toolbar button:hover {
+  text-decoration: underline;
+}
+
+.divider {
+  width: 1px;
+  height: 18px;
+  background: #000;
+  margin: 0 8px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Color Theme Buttons (Rule #8) */
+.color-box {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+  border: 1px solid #000 !important;
+  display: inline-block !important;
+  cursor: pointer !important;
+  margin: 0 2px !important;
+  padding: 0 !important;
+  vertical-align: middle !important;
+  border-radius: 0 !important;
+}
+
+/* Colors */
+.color-box.white, .white { background-color: #fff !important; }
+.color-box.black, .black { background-color: #000 !important; }
+.color-box.yellow, .yellow { background-color: yellow !important; }
+.color-box.blue, .blue { background-color: #cfd8e6 !important; }
+.color-box.peach, .peach { background-color: #e8c2a5 !important; }
+
+/* Carousel Accessibility Controls (Rule #6) */
+.carousel-controls-bar {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  z-index: 100;
+}
+
+.carousel-pause-btn {
+  background: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 16px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.carousel-pause-btn:hover,
+.carousel-pause-btn:focus-visible {
+  background: #ffffff !important;
+  color: #002b55 !important;
+  border-color: #002b55 !important;
+  transform: scale(1.1) !important;
+}
+
+.header-top .inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.top-left,
+.toolbar,
+.top-right {
+  display: flex;
+  align-items: center;
+}
+
+.top-right .info ul {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.top-right .info ul li {
+  margin-left: 15px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.top-right .info ul li.email img,
+.top-right .info ul li a img {
+  width: 24px !important;
+  height: 24px !important;
+  max-width: none !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+.about-section * {
+  font-size: inherit !important;
+}
+
+.list-style-one li {
+  line-height: 1.6em;
+}
+
+.no-theme .title-box .sub-text {
+  font-size: inherit !important;
+}
+
+.no-theme .title-box h4 {
+  font-size: inherit !important;  
+}
+
+.widgets-section .column {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+body * {
+  transition: all 0.3s ease;
+}
+
+/* Table Section Headings matching Old/index.html */
+.tableheading h2 {
+  background-color: #002b55 !important; 
+  color: #ffffff !important; 
+  font-size: 16px !important;
+  text-align: center !important;
+  line-height: 30px !important;
+  min-height: 50px !important;
+  font-weight: bold !important; 
+  margin: 20px 0 0 0 !important;
+  padding: 10px 15px !important;
+  display: block !important;
+}
+
+/* Table Styles matching Old/index.html exactly */
+table#t01 {
+  width: 100% !important;
+  border: 1px solid #333333 !important;
+  border-collapse: collapse !important;
+}
+
+table#t01 th,
+table#t01 td {
+  border: 1px solid #333333 !important;
+  padding: 15px !important;
+  text-align: center !important;
+  color: #333333 !important;
+}
+
+table#t01 tr:nth-child(odd) {
+  background-color: #eee !important;
+}
+
+table#t01 tr:nth-child(even) {
+  background-color: #fff !important;
+}
+
+table#t01 td:hover {
+  background-color: #002b55 !important;
+  color: white !important;
+}
+
+/* Accessible Breadcrumb Styling (WCAG SC 1.3.1 / SC 2.4.8) */
+.breadcrumb-nav {
+  background: transparent !important;
+  padding: 15px 0 5px 0 !important;
+  border: none !important;
+}
+
+.breadcrumb-nav .breadcrumb {
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  list-style: none !important;
+  font-size: 14px !important;
+}
+
+.breadcrumb-nav .breadcrumb-item {
+  color: #555555 !important;
+  font-size: 14px !important;
+}
+
+.breadcrumb-nav .breadcrumb-item + .breadcrumb-item::before {
+  content: "/" !important;
+  padding: 0 8px !important;
+  color: #777777 !important;
+}
+
+.breadcrumb-nav .breadcrumb-item a {
+  color: #6b21a8 !important;
+  text-decoration: underline !important;
+  font-weight: 500 !important;
+}
+
+.breadcrumb-nav .breadcrumb-item a:hover {
+  color: #4c1d95 !important;
+}
+
+.breadcrumb-nav .breadcrumb-item.active {
+  color: #222222 !important;
+  font-weight: bold !important;
+}
+
+/* WCAG 2.2 Form Validation & Error Indicator Styling (SC 3.3.1 / SC 3.3.3) */
+.form-error-msg {
+  color: #d9534f !important;
+  font-size: 13px !important;
+  font-weight: bold !important;
+  margin-top: 4px !important;
+  display: block !important;
+}
+
+input[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  border: 2px solid #d9534f !important;
+  background-color: #fff8f8 !important;
+}
