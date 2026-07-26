@@ -32,7 +32,7 @@ function resetFont() {
   announceToScreenReader("Font size reset to default");
 }
 
-// 2. High Contrast Theme Switcher (Global Header, Navigation & Main Content)
+// 2. High Contrast Theme Switcher (Header Upper, Navigation & Main Content)
 function changeTheme(bgColor, textColor) {
   document.body.style.backgroundColor = bgColor;
   document.body.style.color = textColor;
@@ -42,8 +42,14 @@ function changeTheme(bgColor, textColor) {
     pageWrapper.style.backgroundColor = bgColor;
   }
 
-  // Header Sections
-  document.querySelectorAll('.header-top, .header-upper, .sticky-header, .main-header').forEach(headerEl => {
+  // Keep .header-top (top bar) default white background
+  const headerTop = document.querySelector('.header-top');
+  if (headerTop) {
+    headerTop.style.backgroundColor = '#ffffff';
+  }
+
+  // Apply Theme to Header Upper, Sticky Header & Main Header Container
+  document.querySelectorAll('.header-upper, .sticky-header').forEach(headerEl => {
     headerEl.style.backgroundColor = bgColor;
   });
 
@@ -62,6 +68,7 @@ function changeTheme(bgColor, textColor) {
         !el.closest("#t01") &&
         !el.closest(".inner-banner") &&
         !el.closest(".banner-section") &&
+        !el.closest(".header-top") &&
         !el.closest(".no-theme")
       ) {
         el.style.color = textColor;
@@ -75,9 +82,10 @@ function changeTheme(bgColor, textColor) {
     });
   }
 
-  // Preserve toolbar contrast
+  // Preserve top toolbar text contrast
   document.querySelectorAll('.toolbar, .toolbar a, .toolbar button').forEach(el => {
-    el.style.color = '#000';
+    el.style.color = '#000000';
+    el.style.backgroundColor = 'transparent';
   });
 
   announceToScreenReader("Color theme updated");
