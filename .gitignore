@@ -1,3 +1,6 @@
+# Ignore Old Legacy Directory
+Old/
+
 # Credentials & Local Environment Configuration
 *.env
 config.local.php
