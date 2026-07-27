@@ -1,0 +1,570 @@
+<?php
+// Include the database configuration
+include('config.php');
+
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Define pagination variables
+$records_per_page = 10; // Number of feedback entries per page
+// Get the current page number from the URL, or set it to 1 if not provided
+$current_page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($current_page < 1) $current_page = 1;
+
+// Calculate the OFFSET for the SQL query
+$offset = ($current_page - 1) * $records_per_page;
+
+// Fetch feedback data with pagination
+$sql = "SELECT * FROM feedback LIMIT $records_per_page OFFSET $offset";
+$result = $conn->query($sql);
+
+// Query to count the total number of records
+$count_query = "SELECT COUNT(*) AS total_records FROM feedback";
+$count_result = mysqli_query($conn, $count_query);
+$count_data = mysqli_fetch_assoc($count_result);
+$total_records = $count_data['total_records'];
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<title>VRM Share Broking Pvt. Ltd. | Feedback Management List</title>
+<meta name="description" content="Admin feedback management list for VRM Share Broking Private Limited.">
+<!-- Stylesheets -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<!-- Responsive File -->
+<link href="css/responsive.css" rel="stylesheet">
+
+<!-- New feature CSS -->
+<link href="css/new-feature.css" rel="stylesheet">
+
+<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+<link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+<!-- Responsive Settings -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+
+<style type="text/css">
+/* WCAG 2.2 SC 2.4.7 / 2.4.13: Visible Focus Indicators */
+a:focus, a:focus-visible,
+button:focus, button:focus-visible,
+input:focus, input:focus-visible,
+select:focus, select:focus-visible,
+textarea:focus, textarea:focus-visible,
+[tabindex]:focus, [tabindex]:focus-visible {
+  outline: 3px solid #005FCC !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 4px rgba(0, 95, 204, 0.4) !important;
+}
+
+/* Accessible Table Styling */
+.table-responsive {
+  margin-bottom: 30px;
+}
+
+table.table, table#t01_feedback {
+  width: 100% !important;
+  margin-bottom: 25px;
+  font-family: inherit;
+  font-size: 15px;
+  border-collapse: collapse !important;
+  border: 1px solid #333333 !important;
+}
+
+table.table th, table#t01_feedback th,
+table.table td, table#t01_feedback td {
+  border: 1px solid #333333 !important;
+}
+
+table.table th, table#t01_feedback th {
+  background-color: #002b55 !important;
+  color: #ffffff !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  padding: 14px 12px !important;
+  vertical-align: middle !important;
+}
+
+table.table td, table#t01_feedback td {
+  padding: 12px 15px !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  color: #222222 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+table.table tr:nth-child(odd), table#t01_feedback tr:nth-child(odd) {
+  background-color: #f8f9fa !important;
+}
+
+table.table tr:nth-child(even), table#t01_feedback tr:nth-child(even) {
+  background-color: #ffffff !important;
+}
+
+table.table td:hover, table#t01_feedback td:hover {
+  background-color: #002b55 !important;
+  color: #ffffff !important;
+}
+
+table.table td a, table#t01_feedback td a {
+  color: #005FCC !important;
+  text-decoration: underline !important;
+  font-weight: 600;
+}
+
+table.table td:hover a, table#t01_feedback td:hover a {
+  color: #ffffff !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+.status-received {
+  color: #002b55;
+  font-weight: bold;
+}
+.status-process {
+  color: #d97706;
+  font-weight: bold;
+}
+.status-closed {
+  color: #15803d;
+  font-weight: bold;
+}
+</style>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+<!-- Multi-Level Skip Navigation Bar (WCAG 2.2 SC 2.4.1) -->
+<div class="skip-nav-bar" aria-label="Skip navigation links">
+  <a href="#main-content" class="skip-link">Skip to Content</a>
+  <a href="#main-menu-nav" class="skip-link">Skip to Navigation</a>
+  <a href="#main-footer-sec" class="skip-link">Skip to Footer</a>
+</div>
+
+<!-- SEBI Risk Disclosure Modal Dialog (WCAG SC 2.4.3) -->
+<div id="myModal" class="modal fade" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modal-title" style="font-size: 1.25rem; margin: 0; font-weight: bold;">Disclaimer - Risk Disclosure on Derivatives</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close risk disclosure modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>
+In accordance with SEBI Circular SEBI/HO /MIRSD/MIRSD-PoD-1/P/CIR/2023/73, <br/>
+kindly refer below Risk Disclosure on<br/>
+Derivatives while trading in derivatives segment.<br/>
+RISK DISCLOSURES ON DERIVATIVES</p>
+
+<div class="text-content">
+ <ul class="list-style-one">
+  <li>9 out of 10 individual traders in equity Futures and Options Segment, incurred net losses.</li>
+  <li>On an average, loss makers registered net trading loss close to ₹ 50,000.</li>
+  <li>Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs.</li>
+  <li>Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</li>
+ </ul>
+</div>
+
+<b>Source:</b>
+
+<p>
+   <a href="https://www.sebi.gov.in/reports-and-statistics/research/jan-2023/study-analysis-of-profit-and-loss-of-individual-traders-dealing-in-equity-fando-segment_67525.html" target="_blank" rel="noopener noreferrer"> SEBI study dated January 25, 2023 on “Analysis of Profit and Loss of Individual Traders dealing in equity Futures and Options (F&amp;O) Segment”, wherein Aggregate Level findings are based on annual Profit/Loss incurred by individual traders in equity F&amp;O during FY 2021-22.</a>
+</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-wrapper">
+    <!-- Preloader -->
+    <div class="preloader"><div class="icon"></div></div>
+
+    <!-- Main Header Landmark -->
+    <header class="main-header header-style-one" role="banner">
+        <!-- Header Top -->
+        <div class="header-top header-top-one">
+            <div class="auto-container">
+				<div class="inner clearfix">
+                    <div class="top-left clearfix">
+                        <div class="top-text"><a class="btn btn-primary" href="https://mrvrmshare.com/mrsharebroking/index.html" target="_blank" rel="noopener noreferrer">MR SHARE BROKING PVT. LTD</a></div>
+                    </div>
+                    
+                    <!-- Accessibility Toolbar with Native Buttons -->
+                    <div class="toolbar" aria-label="Accessibility options">
+                        <button type="button" class="toolbar-btn-link" onclick="changeFont(2)" aria-label="Increase text size">A+</button> |
+                        <button type="button" class="toolbar-btn-link" onclick="resetFont()" aria-label="Reset text size">A</button> |
+                        <button type="button" class="toolbar-btn-link" onclick="changeFont(-2)" aria-label="Decrease text size">A-</button> |
+                        <a href="#final-content">Skip to main content</a>
+
+                        <span class="divider"></span>
+
+                        <button type="button" class="color-box white" onclick="changeTheme('#fff', '#000')" aria-label="White background theme"></button>
+                        <button type="button" class="color-box black" onclick="changeTheme('#000', '#fff')" aria-label="Dark background theme"></button>
+                        <button type="button" class="color-box yellow" onclick="changeTheme('yellow', '#000')" aria-label="Yellow background theme"></button>
+                        <button type="button" class="color-box blue" onclick="changeTheme('#cfd8e6', '#000')" aria-label="Blue background theme"></button>
+                        <button type="button" class="color-box peach" onclick="changeTheme('#e8c2a5', '#000')" aria-label="Peach background theme"></button>
+                    </div>
+                    <!-- END: New Feature -->
+    
+                    <div class="top-right clearfix">
+                        <!--Info-->
+                        <div class="info">
+                            <ul class="clearfix">
+                                <li class="phone"><a href="tel:02266228050" aria-label="Call Customer Support at 022 6622 8050"><span class="icon sl-icon-call-in" aria-hidden="true"></span>Phone <strong>022-66228050 / 52 / 57 / 60</strong></a></li>
+                                <li class="email"><a href="mailto:info@vrmshares.com" aria-label="Email Customer Support at info@vrmshares.com"><span class="icon sl-icon-envelope-open" aria-hidden="true"></span>info@vrmshares.com</a></li>
+                                <li class="email"><a href="https://mrvrmshare.com/software/pages/ulogin.php" target="_blank" rel="noopener noreferrer" aria-label="Client Login Portal"><img src="images/icons/user24.png" alt="Client Account Login Portal" style="width:24px; height:24px; vertical-align:middle;"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header Upper -->
+        <div class="header-upper">
+            <div class="auto-container">
+                <div class="inner-container clearfix">
+                    <!--Logo-->
+                    <div class="logo-box">
+                 <div class="logo"><a href="index.html" title="VRM Share Broking Pvt. Ltd."><img src="images/logo.png" alt="VRM Share Broking Pvt. Ltd." title="VRM Share Broking Pvt. Ltd."></a></div> 
+                    </div>
+                    <div class="right-nav clearfix">
+                        <div class="nav-outer clearfix">
+                            <!--Mobile Navigation Toggler-->
+                            <button type="button" class="mobile-nav-toggler" aria-label="Toggle navigation menu" aria-expanded="false"><span class="icon flaticon-menu-1" aria-hidden="true"></span></button>
+
+                            <!-- Main Menu -->
+                            <nav id="main-menu-nav" class="main-menu navbar-expand-md navbar-light" role="navigation" aria-label="Main Navigation">
+                                <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                                    <ul class="navigation clearfix">
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="services.html">Our Services</a></li>
+                                        <li><a href="faq.html">FAQ</a></li>
+                                        <li class="dropdown"><a href="#" aria-haspopup="true" aria-expanded="false">Investor</a>
+                                            <ul>
+                                            <li><a href="pdfs/vrm-do-and-dont-do.pdf" target="_blank" rel="noopener noreferrer">GUIDANCE NOTE - DO'S AND DON'TS</a></li>
+                                            <li><a href="pdfs/stock-broker-investor-charter.pdf" target="_blank" rel="noopener noreferrer">INVESTOR CHARTER - STOCK BROKERS - SEBI</a></li>
+                                            <li><a href="pdfs/investor-charter.pdf" target="_blank" rel="noopener noreferrer">INVESTOR CHARTER - STOCK BROKERS</a></li>
+                                            <li><a href="pdfs/rights-and-obligations-of-stock-brokers-sub-brokers-and-clients.pdf" target="_blank" rel="noopener noreferrer">RIGHTS AND OBLIGATION STOCK BROKERS</a></li>
+                                            <li><a href="pdfs/risk-management-policy-vrm.pdf" target="_blank" rel="noopener noreferrer">RISK MANAGEMENT POLICY</a></li>
+                                            <li><a href="pdfs/investor-grievances-vrm.pdf" target="_blank" rel="noopener noreferrer">INVESTOR COMPLAINT STATISTICS</a></li>
+                                            <li><a href="pdfs/pmla-vrm.pdf" target="_blank" rel="noopener noreferrer">PMLA</a></li>
+                                            <li><a href="pdfs/surveillance-policy-vrm.pdf" target="_blank" rel="noopener noreferrer">SURVEILLANCE POLICY</a></li>
+                                            <li><a href="pdfs/vrm-policy-framework-for-voluntary-freezing.pdf" target="_blank" rel="noopener noreferrer">POLICY FRAME WORK FOR VOLUNTARY FREEZING</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="current"><a href="feedback.php">Support</a></li>
+                                        <li><a href="contact.html">Contact Us</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Header Upper-->
+
+        <!-- Sticky Header  -->
+        <div class="sticky-header">
+            <div class="auto-container clearfix">
+                <!--Logo-->
+                <div class="logo pull-left">
+                    <a href="index.html" title="VRM Share Broking Pvt. Ltd."><img src="images/sticky-logo.png" alt="VRM Share Broking Pvt. Ltd." title="VRM Share Broking Pvt. Ltd."></a>
+                </div>
+            	
+                <!--Right Col-->
+                <div class="pull-right">
+                    <!-- Main Menu -->
+                    <nav class="main-menu clearfix">
+                        <!--Keep This Empty / Menu will come through Javascript-->
+                    </nav><!-- Main Menu End-->
+                </div>
+            </div>
+        </div><!-- End Sticky Menu -->
+
+        <!-- Mobile Menu  -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <button type="button" class="close-btn" aria-label="Close menu"><span class="icon flaticon-targeting-cross"></span></button>
+            
+            <nav class="menu-box">
+                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
+            </nav>
+        </div><!-- End Mobile Menu -->
+    </header>
+    <!-- End Main Header -->
+
+    <!-- Inner Banner Section -->
+    <section class="inner-banner" aria-label="Page Header Banner">
+        <div class="banner-curve"></div>
+        <div class="auto-container">
+            <div class="inner">
+                <div class="theme-icon"></div>
+                <div class="title-box">
+                    <h1>Feedback Management List</h1>
+                    <div class="d-text">VRM Share Broking Private Limited</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Banner Section -->
+
+    <!-- Main Content Landmark -->
+    <main id="main-content">
+        <!-- Breadcrumb Navigation (WCAG SC 1.3.1 / SC 2.4.8) -->
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <div class="auto-container">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="feedback.php">Support</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Feedback List</li>
+                </ol>
+            </div>
+        </nav>
+
+        <div id="final-content">
+            <!-- Feedback List Table Section -->
+            <section class="about-section" aria-label="Customer Feedback Submissions Table">
+                <div class="auto-container">
+                    <div class="row clearfix">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="inner">
+                                <div class="sec-title mb-4">
+                                    <div class="upper-text">SUPPORT DASHBOARD</div>
+                                    <h2>Submitted Feedback Records</h2>
+                                </div>
+                                <div class="text-content">
+                                    <div class="table-responsive">
+                                        <table class="table" id="t01_feedback">
+                                            <caption class="sr-only">List of customer support feedback and ticket statuses</caption>
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">Email Address</th>
+                                                    <th scope="col">Message / Inquiry</th>
+                                                    <th scope="col">Ticket Reference No</th>
+                                                    <th scope="col">Current Status</th>
+                                                    <th scope="col">Action Link</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php 
+                                                if ($result && $result->num_rows > 0) {
+                                                    while ($row = $result->fetch_assoc()) {
+                                                ?>
+                                                <tr>
+                                                    <td><?= htmlspecialchars($row['id']) ?></td>
+                                                    <td><a href="mailto:<?= htmlspecialchars($row['email']) ?>"><?= htmlspecialchars($row['email']) ?></a></td>
+                                                    <td style="text-align: left; max-width: 300px;"><?= htmlspecialchars($row['message']) ?></td>
+                                                    <td><strong><?= htmlspecialchars($row['ticket_no']) ?></strong></td>
+                                                    <?php if ($row['ticket_status'] == 0) { ?>
+                                                    <td><span class="status-received">Received</span></td>
+                                                    <td><a href="change_status.php?id=<?= urlencode($row['ticket_no']) ?>&amp;status=1" class="btn btn-sm btn-outline-warning">Mark In Process</a></td>
+                                                    <?php } elseif ($row['ticket_status'] == 1) { ?>
+                                                    <td><span class="status-process">In Process</span></td>
+                                                    <td><a href="change_status.php?id=<?= urlencode($row['ticket_no']) ?>&amp;status=2" class="btn btn-sm btn-outline-success">Mark Closed</a></td>
+                                                    <?php } else { ?>
+                                                    <td><span class="status-closed">Closed</span></td>
+                                                    <td><span class="text-muted">Completed</span></td>
+                                                    <?php } ?>
+                                                </tr>
+                                                <?php 
+                                                    }
+                                                } else {
+                                                ?>
+                                                <tr>
+                                                    <td colspan="6" class="text-center py-4">No feedback records found in database.</td>
+                                                </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <!-- Display pagination links -->
+                                    <nav aria-label="Feedback List Page Navigation" class="mt-4">
+                                        <ul class="pagination justify-content-center">
+                                            <?php
+                                            $total_pages = ceil($total_records / $records_per_page);
+
+                                            // Create "Previous" link
+                                            if ($current_page > 1) {
+                                                echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page - 1) . '" aria-label="Previous Page">Previous</a></li>';
+                                            }
+
+                                            // Create numbered pagination links
+                                            for ($i = 1; $i <= $total_pages; $i++) {
+                                                $active = ($i == $current_page) ? 'active' : '';
+                                                $currentAttr = ($i == $current_page) ? ' aria-current="page"' : '';
+                                                echo '<li class="page-item ' . $active . '"><a class="page-link" href="?page=' . $i . '"' . $currentAttr . '>' . $i . '</a></li>';
+                                            }
+
+                                            // Create "Next" link
+                                            if ($current_page < $total_pages) {
+                                                echo '<li class="page-item"><a class="page-link" href="?page=' . ($current_page + 1) . '" aria-label="Next Page">Next</a></li>';
+                                            }
+                                            ?>
+                                        </ul>
+                                    </nav>
+
+                                    <?php $conn->close(); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!--Separator-->
+        <div class="theme-separator"></div>
+    </main>
+    <!-- End Main Content Landmark -->
+
+    <!-- Main Footer Landmark -->
+    <footer id="main-footer-sec" class="main-footer" role="contentinfo">
+        <div class="top-pattern-layer-dark"></div>
+        
+        <!--Widgets Section-->
+        <div class="widgets-section">
+            <div class="auto-container">
+                <div class="row clearfix">
+                    
+                    <!--Column-->
+                    <div class="column col-xl-3 col-lg-12 col-md-12 col-sm-12">
+                        <div class="footer-widget about-widget">
+                             <div class="widget-title">
+                                <h3>VRM Share Broking Private Limited</h3>
+                             </div>
+                            <div class="info">
+                                <ul>
+                                    <li>Member of NSE<br/>
+                                        SEBI registration No- INZ000256739<br/>
+                                        CIN NO: U67120MH2000PTC125421<br/>
+                                        Date of incorporation: 29/03/2000<br/>
+                                        GST NO- 27AABCV1534C1ZR<br/>
+                                    </li>
+
+                                     <li><strong>Address:</strong><br/>
+                                        3A 1ST FLOOR PLOT NO-285, CHATURBHUJ JIVANDAS BUILDING SHAMALDAS GANDHI MARG, MARINE LINES EAST MUMBAI 400002</li>
+
+                                            <li>Contact No: <br/><strong>022-66228050</strong></li>
+                                            <li>Dealing Room: <br/><strong>022-66228045 / 66228038 / 66228039</strong></li>
+                                            <li>Back Office: <br/><strong>022-66228025 / 66228052 /<br/>66228057 / 66225060</strong></li>
+                                            <li>Designate Directors: <br/><strong>1 Ramautar Sohanlal Jhawar <br/>
+                                            2 Vinit Ramautar Jhawar</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--Column-->
+                    <div class="column col-xl-9 col-lg-12 col-md-12 col-sm-12">
+                        <div class="footer-widget links-widget">
+                            <div class="widget-content">
+                                <div class="row clearfix">
+                                    <div class="col-lg-8 col-md-12 col-sm-12">
+                                        <div class="row clearfix">
+                                            <div class="column col-lg-6 col-md-6 col-sm-12">
+                                                <div class="widget-title">
+                                                    <h4>Principal Officer</h4>
+                                                </div>
+
+                                                <ul class="info">
+                                            <li><strong>Raj Kumar Pandey</strong></li>
+                                            <li> Contact No:<br/> <strong> 022-66228057 / 9322272483</strong></li>
+                                             <li> <strong> rkpandey@vrmshares.com</strong></li>
+                                                </ul>
+
+                                            </div>
+                                            <div class="column col-lg-6 col-md-6 col-sm-12">
+                                                <div class="widget-title">
+                                                    <h4>Compliance Officer</h4>
+                                                </div>
+                                                <ul class="info">
+                                            <li><strong>Rajkumar Pandey</strong></li>
+                                            <li> Contact No:<br/> <strong> 022-66228057 / 9322272483</strong></li>
+                                              <li> <strong> rkpandey@vrmshares.com</strong></li>
+                                               <li> Investor grievance:<br/> <strong> info@vrmshares.com </strong></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Accessibility Statement Section (WCAG Rule #14) -->
+        <div class="footer-bottom" style="border: none !important; border-top: none !important; border-bottom: none !important; padding: 10px 0; margin-bottom: 0;">
+            <div class="auto-container">
+                <div class="inner" style="border: none !important; border-top: none !important; border-bottom: none !important; text-align: left; font-size: 15px; color: #222222; line-height: 1.6; padding: 10px 0;">
+                    <p style="margin-bottom: 4px; font-weight: 600; color: #222222;"><strong>Accessibility Statement:</strong> VRM Share Broking Private Limited is committed to digital accessibility for all users, conforming to WCAG 2.2 Level AA standards.</p>
+                    <p style="margin: 0; color: #333333; font-size: 14px;">Last Reviewed: July 2026. For support, contact <a href="mailto:info@vrmshares.com" style="color: #005FCC; text-decoration: underline; font-weight: bold;">info@vrmshares.com</a> or call <a href="tel:02266228057" style="color: #005FCC; text-decoration: underline; font-weight: bold;">022-66228057</a>.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="auto-container">
+                <div class="inner">
+                    <div class="copyright">&copy; 2023 <strong>VRM Share broking Pvt. Ltd.</strong>. All rights reserved. <a href="pdfs/vrm-do-and-dont-do.pdf" target="_blank" rel="noopener noreferrer">Privacy Policy</a></div>
+                </div>
+            </div>
+        </div>
+        
+    </footer>
+
+</div>
+<!--End pagewrapper-->
+
+<script src="js/jquery.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-ui.js"></script>	
+<script src="js/jquery.fancybox.js"></script>
+<script src="js/owl.js"></script>
+<script src="js/scrollbar.js"></script>
+<script src="js/validate.js"></script>
+<script src="js/appear.js"></script>
+<script src="js/wow.js"></script>
+<script src="js/custom-script.js"></script>
+
+<script src="js/new-feature.js"></script>
+
+</body>
+</html>
