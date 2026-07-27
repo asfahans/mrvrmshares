@@ -4374,6 +4374,7 @@ img.lazy-image.loaded{
 	visibility: hidden;
 }
 
+.main-footer .widget-title h3,
 .main-footer .widget-title h4{
 	position: relative;
 	display: inline-block;
@@ -4385,6 +4386,7 @@ img.lazy-image.loaded{
 	margin: 0 0;
 }
 
+.main-footer .widget-title h3:before,
 .main-footer .widget-title h4:before{
 	content: '';
 	position: absolute;
