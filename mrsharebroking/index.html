@@ -20,7 +20,7 @@
 
 <!-- Responsive Settings -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
 
@@ -213,8 +213,13 @@ RISK DISCLOSURES ON DERIVATIVES</p>
         </div><!-- End Sticky Menu -->
 
         <!-- Investor Ticker Bar (WCAG SC 2.2.2 Pause/Stop Compliant) -->
-        <div class="no-theme" style="background-color:#4a3d8f; height: 45px; padding-top: 10px;" aria-label="Investor Advisory Announcement">
-            <marquee direction="left" style="color: #fff; font-size: 15px;">"No need to issue cheques by investors while subscribing to IPO. Just write the bank account number and sign in the application form to authorise your bank to make payment in case of allotment. No worries for refund as the money remains in investor's account."</marquee>
+        <div class="no-theme" style="background-color:#4a3d8f; min-height: 45px; padding: 6px 15px; display: flex; align-items: center; justify-content: space-between; gap: 12px;" aria-label="Investor Advisory Announcement">
+            <div style="flex: 1; overflow: hidden;">
+                <marquee id="investor-marquee" direction="left" onmouseover="this.stop()" onmouseout="this.start()" style="color: #fff; font-size: 15px; margin: 0; vertical-align: middle;">"No need to issue cheques by investors while subscribing to IPO. Just write the bank account number and sign in the application form to authorise your bank to make payment in case of allotment. No worries for refund as the money remains in investor's account."</marquee>
+            </div>
+            <button type="button" id="marquee-toggle-btn" onclick="toggleInvestorMarquee()" aria-label="Pause scrolling advisory announcement" style="background-color: #ffffff; color: #4a3d8f; border: 1px solid #ffffff; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; border-radius: 4px; cursor: pointer; flex-shrink: 0; transition: all 0.2s ease-in-out;">
+                <span class="fa fa-pause" aria-hidden="true"></span>
+            </button>
         </div>
 
         <!-- Mobile Menu  -->
@@ -259,7 +264,7 @@ RISK DISCLOSURES ON DERIVATIVES</p>
                     <div class="content-box">
                         <div class="content">
                             <div class="inner">
-                                <h1><strong>Maximize your wealth with us</strong></h1>
+                                <h2><strong>Maximize your wealth with us</strong></h2>
                             </div>
                         </div>
                     </div>  
@@ -407,7 +412,7 @@ RISK DISCLOSURES ON DERIVATIVES</p>
                                     <div style="margin-top:25px;">
                                         <h3 style="font-size: 20px; font-weight:bold; color: #002b55; margin-bottom: 10px;">Procedure for filing a complaint at SCORES and SMARTODR</h3>
                                         <p style="font-style:italic; font-weight: normal; margin-bottom: 10px;">If not satisfied from the above investor can directly complaint to SEBI via SCORES by as follows steps:</p>
-                                        <p style="font-weight: normal; margin-bottom: 10px;">Register on SCORES Portal 2.0 (SEBI) link at Farsight Website: <a href="https://scores.sebi.gov.in" target="_blank" rel="noopener noreferrer" style="color: #005FCC; text-decoration: underline;">https://scores.sebi.gov.in/</a><br/>
+                                        <p style="font-weight: normal; margin-bottom: 10px;">Register on SCORES Portal 2.0 (SEBI) link at Farsight Website: <a href="https://scores.sebi.gov.in" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: underline;">https://scores.sebi.gov.in/</a><br/>
                                         Mandatory details for filing complaints on SCORES &ndash; Easy and quick</p>
 
                                         <ul class="list-style-one" style="font-weight: normal;">
@@ -417,7 +422,7 @@ RISK DISCLOSURES ON DERIVATIVES</p>
                                         </ul>
 
                                         <p style="font-weight:normal; margin-top: 15px;">After exhausting all available options for resolution of the grievance, if the client is still not satisfied with the outcome,<br/>
-                                        They can initiate dispute resolution through the investor login at ODR Portal <a href="https://smartodr.in/login" target="_blank" rel="noopener noreferrer" style="color: #005FCC; text-decoration: underline;">https://smartodr.in/login</a><br/>
+                                        They can initiate dispute resolution through the investor login at ODR Portal <a href="https://smartodr.in/login" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: underline;">https://smartodr.in/login</a><br/>
                                         Further dispute resolution through the ODR Portal can be initiated when the complaint/dispute is not under consideration in terms of the above or SCOREs guidelines as applicable or not pending before any arbitral process, court, and tribunal or consumer forum or are non-arbitral in terms of Indian law.<br/><br/>
                                         <strong>Steps for access of ODR Portal:</strong><br/>
                                         Register on SMART ODR Portal</p>
@@ -467,7 +472,7 @@ RISK DISCLOSURES ON DERIVATIVES</p>
                                     <td>Vijay Kumar Moyal, Manish Dedhia</td>
                                     <td>285, Princess Street, C J House, Marine Lines Mumbai 400002</td>
                                     <td>022-66228025/52</td>
-                                    <td><a href="mailto:info@vrmshares.com" style="color: #005FCC; text-decoration: underline;">info@vrmshares.com</a></td>
+                                    <td><a href="mailto:info@vrmshares.com" style="color: #0056b3; text-decoration: underline;">info@vrmshares.com</a></td>
                                     <td>Monday to Friday 9:AM TO 6:00 PM</td>
                                 </tr>
                                 <tr>
@@ -475,7 +480,7 @@ RISK DISCLOSURES ON DERIVATIVES</p>
                                     <td>Raj Kumar Pandey</td>
                                     <td>285, Princess Street, C J House, Marine Lines Mumbai 400002</td>
                                     <td>022-66228057</td>
-                                    <td><a href="mailto:rkpandey@vrmshares.com" style="color: #005FCC; text-decoration: underline;">rkpandey@vrmshares.com</a></td>
+                                    <td><a href="mailto:rkpandey@vrmshares.com" style="color: #0056b3; text-decoration: underline;">rkpandey@vrmshares.com</a></td>
                                     <td>Monday to Friday 9:AM TO 6:00 PM</td>
                                 </tr>
                                 <tr>
@@ -483,7 +488,7 @@ RISK DISCLOSURES ON DERIVATIVES</p>
                                     <td>Yogesh Kumar Lakhotia</td>
                                     <td>285, Princess Street, C J House, Marine Lines Mumbai 400002</td>
                                     <td>022-66228060</td>
-                                    <td><a href="mailto:yogesh@vrmshares.com" style="color: #005FCC; text-decoration: underline;">yogesh@vrmshares.com</a>, <a href="mailto:yogeshlakhotia@hotmail.com" style="color: #005FCC; text-decoration: underline;">yogeshlakhotia@hotmail.com</a></td>
+                                    <td><a href="mailto:yogesh@vrmshares.com" style="color: #0056b3; text-decoration: underline;">yogesh@vrmshares.com</a>, <a href="mailto:yogeshlakhotia@hotmail.com" style="color: #0056b3; text-decoration: underline;">yogeshlakhotia@hotmail.com</a></td>
                                     <td>Monday to Friday 9:AM TO 6:00 PM</td>
                                 </tr>
                                 <tr>
@@ -491,7 +496,7 @@ RISK DISCLOSURES ON DERIVATIVES</p>
                                     <td>Ramautar S Jhawar</td>
                                     <td>285, Princess Street, C J House, Marine Lines Mumbai 400002</td>
                                     <td>022-66228055</td>
-                                    <td><a href="mailto:rjhawar@vrmshares.com" style="color: #005FCC; text-decoration: underline;">rjhawar@vrmshares.com</a></td>
+                                    <td><a href="mailto:rjhawar@vrmshares.com" style="color: #0056b3; text-decoration: underline;">rjhawar@vrmshares.com</a></td>
                                     <td>Monday to Friday 9:AM TO 6:00 PM</td>
                                 </tr>
                             </tbody>
@@ -500,32 +505,32 @@ RISK DISCLOSURES ON DERIVATIVES</p>
 
                     <div style="margin-top: 20px; line-height: 1.8;">
                         <p><strong>In absence of response/complaint not addressed to your satisfaction, you may lodge a complaint with:</strong><br/>
-                        SCORE - <a href="https://scores.gov.in/scores/Welcome.html" target="_blank" rel="noopener noreferrer" style="color: #005FCC; text-decoration: underline;">https://scores.gov.in/scores/Welcome.html</a><br/>
-                        CDSL E-voting - <a href="https://www.evotingindia.com/" target="_blank" rel="noopener noreferrer" style="color: #005FCC; text-decoration: underline;">https://www.evotingindia.com/</a><br/>
-                        NSDL E-Voting - <a href="https://www.evoting.nsdl.com/" target="_blank" rel="noopener noreferrer" style="color: #005FCC; text-decoration: underline;">https://www.evoting.nsdl.com/</a><br/>
-                        SmartODR - <a href="https://smartodr.in/login" target="_blank" rel="noopener noreferrer" style="color: #005FCC; text-decoration: underline;">https://smartodr.in/login</a></p>
+                        SCORE - <a href="https://scores.gov.in/scores/Welcome.html" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: underline;">https://scores.gov.in/scores/Welcome.html</a><br/>
+                        CDSL E-voting - <a href="https://www.evotingindia.com/" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: underline;">https://www.evotingindia.com/</a><br/>
+                        NSDL E-Voting - <a href="https://www.evoting.nsdl.com/" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: underline;">https://www.evoting.nsdl.com/</a><br/>
+                        SmartODR - <a href="https://smartodr.in/login" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: underline;">https://smartodr.in/login</a></p>
 
                         <p><strong>Important Links:</strong><br/>
-                        BSE - <a href="https://www.bseindia.com/" target="_blank" rel="noopener noreferrer" style="color: #005FCC; text-decoration: underline;">https://www.bseindia.com/</a><br/>
-                        NSE - <a href="https://www.nseindia.com" target="_blank" rel="noopener noreferrer" style="color: #005FCC; text-decoration: underline;">https://www.nseindia.com/</a><br/>
-                        SEBI - <a href="https://www.sebi.gov.in/" target="_blank" rel="noopener noreferrer" style="color: #005FCC; text-decoration: underline;">https://www.sebi.gov.in/</a><br/>
-                        CDSL - <a href="https://www.cdslindia.com/" target="_blank" rel="noopener noreferrer" style="color: #005FCC; text-decoration: underline;">https://www.cdslindia.com/</a><br/>
-                        NSDL - <a href="https://nsdl.co.in/" target="_blank" rel="noopener noreferrer" style="color: #005FCC; text-decoration: underline;">https://nsdl.co.in/</a><br/>
-                        BO Center - <a href="https://evoting.cdslindia.com/Evoting/EvotingLogin" target="_blank" rel="noopener noreferrer" style="color: #005FCC; text-decoration: underline;">https://evoting.cdslindia.com/Evoting/EvotingLogin</a></p>
+                        BSE - <a href="https://www.bseindia.com/" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: underline;">https://www.bseindia.com/</a><br/>
+                        NSE - <a href="https://www.nseindia.com" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: underline;">https://www.nseindia.com/</a><br/>
+                        SEBI - <a href="https://www.sebi.gov.in/" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: underline;">https://www.sebi.gov.in/</a><br/>
+                        CDSL - <a href="https://www.cdslindia.com/" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: underline;">https://www.cdslindia.com/</a><br/>
+                        NSDL - <a href="https://nsdl.co.in/" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: underline;">https://nsdl.co.in/</a><br/>
+                        BO Center - <a href="https://evoting.cdslindia.com/Evoting/EvotingLogin" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: underline;">https://evoting.cdslindia.com/Evoting/EvotingLogin</a></p>
 
-                        <p><a href="pdfs/internal-control-policy-mr.pdf" target="_blank" rel="noopener noreferrer" style="color: #005FCC; text-decoration: underline; font-weight: bold;">INTERNAL CONTROL POLICY &amp; PROCEDURES</a></p>
-                        <p><a href="pdfs/step-guide-to-account-opening-mr.pdf" target="_blank" rel="noopener noreferrer" style="color: #005FCC; text-decoration: underline; font-weight: bold;">A STEP-BY-STEP GUIDE TO ACCOUNT OPENING</a></p>
-                        <p><a href="pdfs/procedure-for-filing-complaint-mr.pdf" target="_blank" rel="noopener noreferrer" style="color: #005FCC; text-decoration: underline; font-weight: bold;">Procedure for filing a complaint on a designated email id/Website</a></p>
+                        <p><a href="pdfs/internal-control-policy-mr.pdf" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: underline; font-weight: bold;">INTERNAL CONTROL POLICY &amp; PROCEDURES</a></p>
+                        <p><a href="pdfs/step-guide-to-account-opening-mr.pdf" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: underline; font-weight: bold;">A STEP-BY-STEP GUIDE TO ACCOUNT OPENING</a></p>
+                        <p><a href="pdfs/procedure-for-filing-complaint-mr.pdf" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: underline; font-weight: bold;">Procedure for filing a complaint on a designated email id/Website</a></p>
                     </div>
                 </div>
             </section>
 
             <!-- Table 2 Section: Key Managerial Personnel -->
-            <section class="kmp-section" aria-labelledby="kmp-heading" style="margin-top: 30px;">
+            <section class="kmp-section" aria-labelledby="kmp-heading" style="margin-top: 30px; margin-bottom: 40px;">
                 <div class="container">
                     <div class="row"> 
                         <div class="col-lg-12 col-xs-12">
-                            <div class="tableheading"><h2 id="kmp-heading">NAMES AND CONTACT DETAILS OF ALL KEY MANAGERIAL PERSONNEL</h2></div>
+                            <div class="tableheading"><h2 id="kmp-heading">DETAILS OF KEY MANAGERIAL PERSONNEL</h2></div>
                         </div>
                     </div>
                 </div>
@@ -533,14 +538,14 @@ RISK DISCLOSURES ON DERIVATIVES</p>
                 <div class="container">
                     <div class="table-responsive">
                         <table class="table" id="t01" aria-labelledby="kmp-heading">
-                            <caption class="sr-only">Names and contact details of key managerial personnel</caption>
+                            <caption class="sr-only">Contact details and designation of key managerial personnel</caption>
                             <thead>
                                 <tr class="tableizer-firstrow">
-                                    <th scope="col" style="text-align: center;">Serial No</th>
-                                    <th scope="col" style="text-align: center;">Name of Individual</th>
+                                    <th scope="col" style="text-align: center;">Sr. No</th>
+                                    <th scope="col" style="text-align: center;">Name of the Individual</th>
                                     <th scope="col" style="text-align: center;">Designation</th>
                                     <th scope="col" style="text-align: center;">Mobile No</th>
-                                    <th scope="col" style="text-align: center;">E-mail</th>
+                                    <th scope="col" style="text-align: center;">Email-Id</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -549,28 +554,28 @@ RISK DISCLOSURES ON DERIVATIVES</p>
                                     <td>Ramautar S Jhawar</td>
                                     <td>Designated Director</td>
                                     <td><a href="tel:9322275723" style="color: inherit;">9322275723</a></td>
-                                    <td><a href="mailto:rjhawar@vrmshares.com" style="color: #005FCC; text-decoration: underline;">rjhawar@vrmshares.com</a></td>
+                                    <td><a href="mailto:rjhawar@vrmshares.com" style="color: #0056b3; text-decoration: underline;">rjhawar@vrmshares.com</a></td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
                                     <td>Vinit R Jhawar</td>
                                     <td>Director</td>
                                     <td><a href="tel:9920729831" style="color: inherit;">9920729831</a></td>
-                                    <td><a href="mailto:vineet_jhawar@hotmail.com" style="color: #005FCC; text-decoration: underline;">vineet_jhawar@hotmail.com</a></td>
+                                    <td><a href="mailto:vineet_jhawar@hotmail.com" style="color: #0056b3; text-decoration: underline;">vineet_jhawar@hotmail.com</a></td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Raj Kumar Pandey</td>
                                     <td>Principal Officer</td>
                                     <td><a href="tel:9322272483" style="color: inherit;">9322272483</a></td>
-                                    <td><a href="mailto:rkpandey@vrmshares.com" style="color: #005FCC; text-decoration: underline;">rkpandey@vrmshares.com</a></td>
+                                    <td><a href="mailto:rkpandey@vrmshares.com" style="color: #0056b3; text-decoration: underline;">rkpandey@vrmshares.com</a></td>
                                 </tr>
                                 <tr>
                                     <td>4</td>
                                     <td>Yogesh Kumar Lakhotia</td>
                                     <td>Compliance Officer</td>
                                     <td><a href="tel:9321737937" style="color: inherit;">9321737937</a></td>
-                                    <td><a href="mailto:yogeshlakhotia@hotmail.com" style="color: #005FCC; text-decoration: underline;">yogeshlakhotia@hotmail.com</a>, <a href="mailto:yogesh@vrmshares.com" style="color: #005FCC; text-decoration: underline;">yogesh@vrmshares.com</a></td>
+                                    <td><a href="mailto:yogeshlakhotia@hotmail.com" style="color: #0056b3; text-decoration: underline;">yogeshlakhotia@hotmail.com</a>, <a href="mailto:yogesh@vrmshares.com" style="color: #0056b3; text-decoration: underline;">yogesh@vrmshares.com</a></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -609,7 +614,7 @@ RISK DISCLOSURES ON DERIVATIVES</p>
                                     <td>3B 1ST FLOOR PLOT NO-285, CHATURBHUJ JIVANDAS BUILDING SHAMALDAS GANDHI MARG, MARINE LINES EAST MUMBAI 400002</td>
                                     <td>Not Applicable</td>
                                     <td>022-66228025 / 50 / 52 / 57 / 60</td>
-                                    <td><a href="mailto:info@vrmshares.com" style="color: #005FCC; text-decoration: underline;">info@vrmshares.com</a></td>
+                                    <td><a href="mailto:info@vrmshares.com" style="color: #0056b3; text-decoration: underline;">info@vrmshares.com</a></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -636,7 +641,7 @@ RISK DISCLOSURES ON DERIVATIVES</p>
                     <div class="column col-lg-4 col-md-4 col-sm-12">
                         <div class="footer-widget links-widget">
                              <div class="widget-title no-theme">
-                                <h4>MR Share Broking Private Limited</h4>
+                                <h3>MR Share Broking Private Limited</h3>
                              </div>
                             <div class="info">
                                 <ul>
@@ -662,7 +667,7 @@ RISK DISCLOSURES ON DERIVATIVES</p>
                     <div class="column col-lg-4 col-md-4 col-sm-12">
                         <div class="footer-widget links-widget">
                             <div class="widget-title no-theme">
-                                <h4>Principal Officer</h4>
+                                <h3>Principal Officer</h3>
                             </div>
                             <ul class="info">
                                 <li><strong>Raj Kumar Pandey</strong></li>
@@ -676,7 +681,7 @@ RISK DISCLOSURES ON DERIVATIVES</p>
                     <div class="column col-lg-4 col-md-4 col-sm-12">
                         <div class="footer-widget links-widget">
                             <div class="widget-title no-theme">
-                                <h4>Compliance Officer</h4>
+                                <h3>Compliance Officer</h3>
                             </div>
                             <ul class="info">
                                 <li><strong>Yogesh Kumar Lakhotia</strong></li>
@@ -696,7 +701,7 @@ RISK DISCLOSURES ON DERIVATIVES</p>
             <div class="container">
                 <div class="inner" style="border: none !important; border-top: none !important; border-bottom: none !important; text-align: left; font-size: 15px; color: #222222; line-height: 1.6; padding: 10px 0;">
                     <p style="margin-bottom: 4px; font-weight: 600; color: #222222;"><strong>Accessibility Statement:</strong> MR Share Broking Private Limited is committed to digital accessibility for all users, conforming to WCAG 2.2 Level AA standards.</p>
-                    <p style="margin: 0; color: #333333; font-size: 14px;">Last Reviewed: July 2026. For support, contact <a href="mailto:info@vrmshares.com" style="color: #005FCC; text-decoration: underline; font-weight: bold;">info@vrmshares.com</a> or call <a href="tel:02266228057" style="color: #005FCC; text-decoration: underline; font-weight: bold;">022-66228057</a>.</p>
+                    <p style="margin: 0; color: #333333; font-size: 14px;">Last Reviewed: July 2026. For support, contact <a href="mailto:info@vrmshares.com" style="color: #0056b3; text-decoration: underline; font-weight: bold;">info@vrmshares.com</a> or call <a href="tel:02266228057" style="color: #0056b3; text-decoration: underline; font-weight: bold;">022-66228057</a>.</p>
                 </div>
             </div>
         </div>

@@ -29,7 +29,7 @@ unset($_SESSION['login_error']);
 
 <!-- Responsive Settings -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
 
@@ -303,12 +303,12 @@ RISK DISCLOSURES ON DERIVATIVES</p>
         
         <!--Widgets Section-->
         <div class="widgets-section">
-            <div class="auto-container">
+            <div class="container">
                 <div class="row clearfix">
                     
                     <!--Column-->
-                    <div class="column col-xl-3 col-lg-12 col-md-12 col-sm-12">
-                        <div class="footer-widget about-widget">
+                    <div class="column col-lg-4 col-md-4 col-sm-12">
+                        <div class="footer-widget links-widget">
                              <div class="widget-title">
                                 <h3>VRM Share Broking Private Limited</h3>
                              </div>
@@ -322,7 +322,7 @@ RISK DISCLOSURES ON DERIVATIVES</p>
                                     </li>
 
                                      <li><strong>Address:</strong><br/>
-                                        3A 1ST FLOOR PLOT NO-285, CHATURBHUJ JIVANDAS BUILDING SHAMALDAS GANDHI MARG, MARINE LINES EAST MUMBAI 400002</li>
+                                        3A 1ST FLOOR PLOT NO-285, CHATURBHUJ JIVANDAS BUILDING SHAMALDAS GANDHI MARG, MARINE LINES EAST  MUMBAI 400002</li>
 
                                             <li>Contact No: <br/><strong>022-66228050</strong></li>
                                             <li>Dealing Room: <br/><strong>022-66228045 / 66228038 / 66228039</strong></li>
@@ -335,39 +335,34 @@ RISK DISCLOSURES ON DERIVATIVES</p>
                     </div>
                     
                     <!--Column-->
-                    <div class="column col-xl-9 col-lg-12 col-md-12 col-sm-12">
+                    <div class="column col-lg-4 col-md-4 col-sm-12">
                         <div class="footer-widget links-widget">
-                            <div class="widget-content">
-                                <div class="row clearfix">
-                                    <div class="col-lg-8 col-md-12 col-sm-12">
-                                        <div class="row clearfix">
-                                            <div class="column col-lg-6 col-md-6 col-sm-12">
-                                                <div class="widget-title">
-                                                    <h4>Principal Officer</h4>
-                                                </div>
+                            <div class="widget-title">
+                                <h3>Principal Officer</h3>
+                            </div>
+                            <ul class="info">
+                                <li><strong>Raj Kumar Pandey</strong></li>
+                                <li> Contact No:<br/> <strong> 022-66228057 / 9322272483</strong></li>
+                                <li> <strong> rkpandey@vrmshares.com</strong></li>
+                            </ul>
+                            <ul class="links" style="padding-left: 0px; margin-top: 20px;">
+                                <li><a href="https://www.nseindia.com/trade/members-client-registration-documents" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: underline; font-weight: bold;">Download Client Registration Documents (Rights &amp; Obligations, Risk Disclosure Document, Do's &amp; Don't's) in Vernacular Language:</a></li>
+                            </ul>
+                        </div>
+                    </div>
 
-                                                <ul class="info">
-                                            <li><strong>Raj Kumar Pandey</strong></li>
-                                            <li> Contact No:<br/> <strong> 022-66228057 / 9322272483</strong></li>
-                                             <li> <strong> rkpandey@vrmshares.com</strong></li>
-                                                </ul>
-
-                                            </div>
-                                            <div class="column col-lg-6 col-md-6 col-sm-12">
-                                                <div class="widget-title">
-                                                    <h4>Compliance Officer</h4>
-                                                </div>
-                                                <ul class="info">
-                                            <li><strong>Rajkumar Pandey</strong></li>
-                                            <li> Contact No:<br/> <strong> 022-66228057 / 9322272483</strong></li>
-                                              <li> <strong> rkpandey@vrmshares.com</strong></li>
-                                               <li> Investor grievance:<br/> <strong> info@vrmshares.com </strong></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>  
+                    <!--Column-->
+                    <div class="column col-lg-4 col-md-4 col-sm-12">
+                        <div class="footer-widget links-widget">
+                            <div class="widget-title">
+                                <h3>Compliance Officer</h3>
+                            </div>
+                            <ul class="info">
+                                <li><strong>Rajkumar Pandey</strong></li>
+                                <li> Contact No:<br/> <strong> 022-66228057 / 9322272483</strong></li>
+                                <li> <strong> rkpandey@vrmshares.com</strong></li>
+                                <li> Investor grievance:<br/> <strong> info@vrmshares.com </strong></li>
+                            </ul>
                         </div>
                     </div>
                     
@@ -380,7 +375,7 @@ RISK DISCLOSURES ON DERIVATIVES</p>
             <div class="auto-container">
                 <div class="inner" style="border: none !important; border-top: none !important; border-bottom: none !important; text-align: left; font-size: 15px; color: #222222; line-height: 1.6; padding: 10px 0;">
                     <p style="margin-bottom: 4px; font-weight: 600; color: #222222;"><strong>Accessibility Statement:</strong> VRM Share Broking Private Limited is committed to digital accessibility for all users, conforming to WCAG 2.2 Level AA standards.</p>
-                    <p style="margin: 0; color: #333333; font-size: 14px;">Last Reviewed: July 2026. For support, contact <a href="mailto:info@vrmshares.com" style="color: #005FCC; text-decoration: underline; font-weight: bold;">info@vrmshares.com</a> or call <a href="tel:02266228057" style="color: #005FCC; text-decoration: underline; font-weight: bold;">022-66228057</a>.</p>
+                    <p style="margin: 0; color: #333333; font-size: 14px;">Last Reviewed: July 2026. For support, contact <a href="mailto:info@vrmshares.com" style="color: #0056b3; text-decoration: underline; font-weight: bold;">info@vrmshares.com</a> or call <a href="tel:02266228057" style="color: #0056b3; text-decoration: underline; font-weight: bold;">022-66228057</a>.</p>
                 </div>
             </div>
         </div>

@@ -331,3 +331,44 @@ function showFieldError($field, errorId, errorMsgText) {
   $field.attr('aria-invalid', 'true').attr('aria-describedby', errorId);
   $field.after('<div id="' + errorId + '" class="form-error-msg" role="alert">' + errorMsgText + '</div>');
 }
+
+/* ==========================================================================
+   9. MARQUEE / TICKER ACCESSIBILITY PAUSE & PLAY (WCAG 2.2 SC 2.2.2)
+   ========================================================================== */
+let isMarqueePaused = false;
+
+function toggleInvestorMarquee() {
+  const marquee = document.getElementById('investor-marquee');
+  const btn = document.getElementById('marquee-toggle-btn');
+  if (!marquee || !btn) return;
+
+  if (isMarqueePaused) {
+    if (typeof marquee.start === 'function') marquee.start();
+    btn.innerHTML = '<span class="fa fa-pause" aria-hidden="true"></span>';
+    btn.setAttribute('aria-label', 'Pause scrolling advisory announcement');
+    isMarqueePaused = false;
+    announceToScreenReader('Scrolling announcement resumed');
+  } else {
+    if (typeof marquee.stop === 'function') marquee.stop();
+    btn.innerHTML = '<span class="fa fa-play" aria-hidden="true"></span>';
+    btn.setAttribute('aria-label', 'Play scrolling advisory announcement');
+    isMarqueePaused = true;
+    announceToScreenReader('Scrolling announcement paused');
+  }
+}
+
+// Auto pause marquee if user prefers reduced motion (WCAG SC 2.2.2 / SC 2.3.1)
+$(document).ready(function () {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const marquee = document.getElementById('investor-marquee');
+    const btn = document.getElementById('marquee-toggle-btn');
+    if (marquee && typeof marquee.stop === 'function') {
+      marquee.stop();
+      isMarqueePaused = true;
+      if (btn) {
+        btn.innerHTML = '<span class="fa fa-play" aria-hidden="true"></span>';
+        btn.setAttribute('aria-label', 'Play scrolling advisory announcement');
+      }
+    }
+  }
+});

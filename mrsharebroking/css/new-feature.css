@@ -306,3 +306,58 @@ textarea[aria-invalid="true"] {
   border: 2px solid #d9534f !important;
   background-color: #fff8f8 !important;
 }
+
+/* ==========================================================================
+   WCAG 2.2 SC 1.4.3: COLOUR CONTRAST MINIMUM (LEVEL AA) - POINT 14 FIXES
+   ========================================================================== */
+
+/* 1. Cross-brand Button (.btn-primary) - Darkened to #0056b3 (7.15:1 contrast on white) */
+.btn-primary,
+a.btn.btn-primary {
+  background-color: #0056b3 !important;
+  border-color: #0056b3 !important;
+  color: #ffffff !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+a.btn.btn-primary:hover,
+a.btn.btn-primary:focus,
+a.btn.btn-primary:active {
+  background-color: #003d82 !important;
+  border-color: #003d82 !important;
+  color: #ffffff !important;
+}
+
+/* 2. Active Navigation Item (.current > a) - Darkened to #c9165a (5.38:1 contrast on white) */
+.main-menu .navigation > li.current > a,
+.navigation > li.current > a,
+.main-menu .navigation > li.current > a:hover {
+  color: #c9165a !important;
+}
+
+/* 3. In-text Regulatory & Content Links on Light Backgrounds - #0056b3 (7.15:1 contrast) */
+#main-content a,
+.text-content a,
+.footer-bottom a,
+table td a,
+p a:not(.btn) {
+  color: #0056b3 !important;
+}
+
+#main-content a:hover,
+.text-content a:hover,
+.footer-bottom a:hover,
+table td a:hover,
+p a:not(.btn):hover {
+  color: #003d82 !important;
+  text-decoration: underline !important;
+}
+
+/* Preserve white text links in dark footer & toolbar */
+.main-footer .copyright a,
+.widgets-section a {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+}
