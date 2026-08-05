@@ -125,10 +125,14 @@ function initModalAccessibility() {
   const $modal = $('#myModal');
   if (!$modal.length) return;
 
-  // Automatically trigger modal popup on page load if modal exists
-  setTimeout(function() {
-    $modal.modal('show');
-  }, 100);
+  // Auto-show popup ONLY on Home Page load (not on inner pages)
+  const path = window.location.pathname.toLowerCase();
+  const isHomePage = path.endsWith('/index.html') || path.endsWith('/') || path.endsWith('/mrsharebroking/') || path === '' || path === '/index.html' || path.endsWith('\\index.html');
+  if (isHomePage) {
+    setTimeout(function() {
+      $modal.modal('show');
+    }, 100);
+  }
 
   let lastFocusedElement = null;
 
