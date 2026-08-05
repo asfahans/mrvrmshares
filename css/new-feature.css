@@ -356,7 +356,29 @@ a.btn.btn-primary:active,
   color: #c9165a !important;
 }
 
-/* 3. In-text Regulatory & Content Links on Light Backgrounds (excluding buttons) - #0056b3 (7.15:1 contrast) */
+/* Header Navigation Links Uniform Styling - No Underline Across All Pages */
+.main-header .navigation a,
+.main-header .navigation > li > a,
+.main-menu .navigation a,
+.main-menu .navigation > li > a,
+#main-menu-nav .navigation > li > a,
+.sticky-header .main-menu .navigation > li > a,
+.mobile-menu .navigation a {
+  text-decoration: none !important;
+}
+
+.main-header .navigation a:hover,
+.main-header .navigation > li > a:hover,
+.main-menu .navigation a:hover,
+.main-menu .navigation > li > a:hover,
+.main-menu .navigation > li.current > a,
+#main-menu-nav .navigation > li > a:hover,
+.sticky-header .main-menu .navigation > li > a:hover,
+.mobile-menu .navigation a:hover {
+  text-decoration: none !important;
+}
+
+/* 3. In-text Regulatory & Content Links on Light Backgrounds (excluding buttons and main navigation) - #0056b3 (7.15:1 contrast) */
 #main-content a:not(.btn),
 .text-content a:not(.btn),
 .widgets-section a:not(.btn),
