@@ -125,6 +125,11 @@ function initModalAccessibility() {
   const $modal = $('#myModal');
   if (!$modal.length) return;
 
+  // Automatically trigger modal popup on page load if modal exists
+  setTimeout(function() {
+    $modal.modal('show');
+  }, 100);
+
   let lastFocusedElement = null;
 
   $modal.on('shown.bs.modal', function () {
