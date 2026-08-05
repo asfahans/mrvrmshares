@@ -356,18 +356,44 @@ a.btn.btn-primary:active,
   color: #c9165a !important;
 }
 
-/* Floating Nav & Header Top Contact/Navigation Links Uniform Styling - No Underline Across All Pages */
-#main-content .header-top a,
-#main-content .header-top li a,
-#main-content .top-right a,
+/* Header Top Contact Links (Phone & Email) Color Uniformity Across All Pages (#222222) */
+#main-content .header-top .info a,
 #main-content .top-right .info a,
 #main-content .top-right .info li a,
 #main-content .top-right .info li.phone a,
 #main-content .top-right .info li.email a,
 #main-content .phone a,
 #main-content .email a,
+.header-top .info a,
+.top-right .info a,
+.top-right .info li a,
+.top-right .info li.phone a,
+.top-right .info li.email a,
 .phone a,
-.email a,
+.email a {
+  color: #222222 !important;
+  text-decoration: none !important;
+}
+
+#main-content .header-top .info a:hover,
+#main-content .top-right .info a:hover,
+#main-content .top-right .info li a:hover,
+#main-content .top-right .info li.phone a:hover,
+#main-content .top-right .info li.email a:hover,
+#main-content .phone a:hover,
+#main-content .email a:hover,
+.header-top .info a:hover,
+.top-right .info a:hover,
+.top-right .info li a:hover,
+.top-right .info li.phone a:hover,
+.top-right .info li.email a:hover,
+.phone a:hover,
+.email a:hover {
+  color: #f74883 !important;
+  text-decoration: underline !important;
+}
+
+/* Floating Nav & Header Navigation Links Uniform Styling - No Underline Across All Pages */
 .sticky-header a,
 .sticky-header .navigation a,
 .sticky-header .navigation li a,
@@ -377,12 +403,6 @@ a.btn.btn-primary:active,
 #main-content .sticky-header .navigation a,
 #main-content .sticky-header .main-menu a,
 #main-content .main-menu a,
-.header-top a,
-.top-right a,
-.top-right .info a,
-.top-right .info li a,
-.top-right .info li.phone a,
-.top-right .info li.email a,
 .main-header .navigation a,
 .main-header .navigation > li > a,
 .main-menu .navigation a,
@@ -392,17 +412,6 @@ a.btn.btn-primary:active,
   text-decoration: none !important;
 }
 
-#main-content .header-top a:hover,
-#main-content .header-top li a:hover,
-#main-content .top-right a:hover,
-#main-content .top-right .info a:hover,
-#main-content .top-right .info li a:hover,
-#main-content .top-right .info li.phone a:hover,
-#main-content .top-right .info li.email a:hover,
-#main-content .phone a:hover,
-#main-content .email a:hover,
-.phone a:hover,
-.email a:hover,
 .sticky-header a:hover,
 .sticky-header a:focus,
 .sticky-header .navigation a:hover,
@@ -413,12 +422,6 @@ a.btn.btn-primary:active,
 #main-content .sticky-header .navigation a:hover,
 #main-content .sticky-header .main-menu a:hover,
 #main-content .main-menu a:hover,
-.header-top a:hover,
-.top-right a:hover,
-.top-right .info a:hover,
-.top-right .info li a:hover,
-.top-right .info li.phone a:hover,
-.top-right .info li.email a:hover,
 .main-header .navigation a:hover,
 .main-header .navigation > li > a:hover,
 .main-menu .navigation a:hover,
