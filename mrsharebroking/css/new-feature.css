@@ -311,9 +311,17 @@ textarea[aria-invalid="true"] {
    WCAG 2.2 SC 1.4.3: COLOUR CONTRAST MINIMUM (LEVEL AA) - POINT 14 FIXES
    ========================================================================== */
 
-/* 1. Cross-brand Button (.btn-primary) - Darkened to #0056b3 (7.15:1 contrast on white) */
+/* 1. Cross-brand Button (.btn-primary) - #0056b3 background with crisp white text (#ffffff, 7.15:1 contrast) */
 .btn-primary,
-a.btn.btn-primary {
+a.btn,
+a.btn-primary,
+a.btn.btn-primary,
+#main-content a.btn,
+#main-content a.btn-primary,
+#main-content a.btn.btn-primary,
+.top-left .top-text a,
+.top-left .top-text a.btn,
+.top-left .top-text a.btn-primary {
   background-color: #0056b3 !important;
   border-color: #0056b3 !important;
   color: #ffffff !important;
@@ -322,9 +330,20 @@ a.btn.btn-primary {
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
+a.btn:hover,
+a.btn:focus,
 a.btn.btn-primary:hover,
 a.btn.btn-primary:focus,
-a.btn.btn-primary:active {
+a.btn.btn-primary:active,
+#main-content a.btn:hover,
+#main-content a.btn:focus,
+#main-content a.btn.btn-primary:hover,
+#main-content a.btn.btn-primary:focus,
+#main-content a.btn.btn-primary:active,
+.top-left .top-text a:hover,
+.top-left .top-text a:focus,
+.top-left .top-text a.btn:hover,
+.top-left .top-text a.btn-primary:hover {
   background-color: #003d82 !important;
   border-color: #003d82 !important;
   color: #ffffff !important;
@@ -337,19 +356,19 @@ a.btn.btn-primary:active {
   color: #c9165a !important;
 }
 
-/* 3. In-text Regulatory & Content Links on Light Backgrounds - #0056b3 (7.15:1 contrast) */
-#main-content a,
-.text-content a,
-.footer-bottom a,
-table td a,
+/* 3. In-text Regulatory & Content Links on Light Backgrounds (excluding buttons) - #0056b3 (7.15:1 contrast) */
+#main-content a:not(.btn),
+.text-content a:not(.btn),
+.footer-bottom a:not(.btn),
+table td a:not(.btn),
 p a:not(.btn) {
   color: #0056b3 !important;
 }
 
-#main-content a:hover,
-.text-content a:hover,
-.footer-bottom a:hover,
-table td a:hover,
+#main-content a:not(.btn):hover,
+.text-content a:not(.btn):hover,
+.footer-bottom a:not(.btn):hover,
+table td a:not(.btn):hover,
 p a:not(.btn):hover {
   color: #003d82 !important;
   text-decoration: underline !important;
