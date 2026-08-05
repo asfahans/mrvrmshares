@@ -359,14 +359,19 @@ a.btn.btn-primary:active,
 /* 3. In-text Regulatory & Content Links on Light Backgrounds (excluding buttons) - #0056b3 (7.15:1 contrast) */
 #main-content a:not(.btn),
 .text-content a:not(.btn),
+.widgets-section a:not(.btn),
+.footer-widget a:not(.btn),
 .footer-bottom a:not(.btn),
 table td a:not(.btn),
 p a:not(.btn) {
   color: #0056b3 !important;
+  text-decoration: underline !important;
 }
 
 #main-content a:not(.btn):hover,
 .text-content a:not(.btn):hover,
+.widgets-section a:not(.btn):hover,
+.footer-widget a:not(.btn):hover,
 .footer-bottom a:not(.btn):hover,
 table td a:not(.btn):hover,
 p a:not(.btn):hover {
@@ -374,9 +379,8 @@ p a:not(.btn):hover {
   text-decoration: underline !important;
 }
 
-/* Preserve white text links in dark footer & toolbar */
-.main-footer .copyright a,
-.widgets-section a {
-  color: #ffffff !important;
+/* Preserve footer copyright link contrast */
+.main-footer .copyright a {
+  color: #0056b3 !important;
   text-decoration: underline !important;
 }
