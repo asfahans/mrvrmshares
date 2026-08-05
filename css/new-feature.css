@@ -356,7 +356,13 @@ a.btn.btn-primary:active,
   color: #c9165a !important;
 }
 
-/* Header Navigation Links Uniform Styling - No Underline Across All Pages */
+/* Header Top & Navigation Links Uniform Styling - No Underline Across All Pages */
+.header-top a,
+.top-right a,
+.top-right .info a,
+.top-right .info li a,
+.top-right .info li.phone a,
+.top-right .info li.email a,
 .main-header .navigation a,
 .main-header .navigation > li > a,
 .main-menu .navigation a,
@@ -367,6 +373,12 @@ a.btn.btn-primary:active,
   text-decoration: none !important;
 }
 
+.header-top a:hover,
+.top-right a:hover,
+.top-right .info a:hover,
+.top-right .info li a:hover,
+.top-right .info li.phone a:hover,
+.top-right .info li.email a:hover,
 .main-header .navigation a:hover,
 .main-header .navigation > li > a:hover,
 .main-menu .navigation a:hover,
