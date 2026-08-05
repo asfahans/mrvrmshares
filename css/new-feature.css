@@ -356,7 +356,16 @@ a.btn.btn-primary:active,
   color: #c9165a !important;
 }
 
-/* Header Top & Navigation Links Uniform Styling - No Underline Across All Pages */
+/* Floating Nav & Header Navigation Links Uniform Styling - No Underline Across All Pages */
+.sticky-header a,
+.sticky-header .navigation a,
+.sticky-header .navigation li a,
+.sticky-header .main-menu a,
+.fixed-header .sticky-header a,
+#main-content .sticky-header a,
+#main-content .sticky-header .navigation a,
+#main-content .sticky-header .main-menu a,
+#main-content .main-menu a,
 .header-top a,
 .top-right a,
 .top-right .info a,
@@ -368,11 +377,20 @@ a.btn.btn-primary:active,
 .main-menu .navigation a,
 .main-menu .navigation > li > a,
 #main-menu-nav .navigation > li > a,
-.sticky-header .main-menu .navigation > li > a,
 .mobile-menu .navigation a {
   text-decoration: none !important;
 }
 
+.sticky-header a:hover,
+.sticky-header a:focus,
+.sticky-header .navigation a:hover,
+.sticky-header .navigation li a:hover,
+.sticky-header .main-menu a:hover,
+.fixed-header .sticky-header a:hover,
+#main-content .sticky-header a:hover,
+#main-content .sticky-header .navigation a:hover,
+#main-content .sticky-header .main-menu a:hover,
+#main-content .main-menu a:hover,
 .header-top a:hover,
 .top-right a:hover,
 .top-right .info a:hover,
@@ -385,7 +403,6 @@ a.btn.btn-primary:active,
 .main-menu .navigation > li > a:hover,
 .main-menu .navigation > li.current > a,
 #main-menu-nav .navigation > li > a:hover,
-.sticky-header .main-menu .navigation > li > a:hover,
 .mobile-menu .navigation a:hover {
   text-decoration: none !important;
 }
