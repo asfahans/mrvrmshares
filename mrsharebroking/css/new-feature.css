@@ -356,7 +356,18 @@ a.btn.btn-primary:active,
   color: #c9165a !important;
 }
 
-/* Floating Nav & Header Navigation Links Uniform Styling - No Underline Across All Pages */
+/* Floating Nav & Header Top Contact/Navigation Links Uniform Styling - No Underline Across All Pages */
+#main-content .header-top a,
+#main-content .header-top li a,
+#main-content .top-right a,
+#main-content .top-right .info a,
+#main-content .top-right .info li a,
+#main-content .top-right .info li.phone a,
+#main-content .top-right .info li.email a,
+#main-content .phone a,
+#main-content .email a,
+.phone a,
+.email a,
 .sticky-header a,
 .sticky-header .navigation a,
 .sticky-header .navigation li a,
@@ -381,6 +392,17 @@ a.btn.btn-primary:active,
   text-decoration: none !important;
 }
 
+#main-content .header-top a:hover,
+#main-content .header-top li a:hover,
+#main-content .top-right a:hover,
+#main-content .top-right .info a:hover,
+#main-content .top-right .info li a:hover,
+#main-content .top-right .info li.phone a:hover,
+#main-content .top-right .info li.email a:hover,
+#main-content .phone a:hover,
+#main-content .email a:hover,
+.phone a:hover,
+.email a:hover,
 .sticky-header a:hover,
 .sticky-header a:focus,
 .sticky-header .navigation a:hover,
